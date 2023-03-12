@@ -2,14 +2,12 @@ package com.kindsonthegenius.fleetapp.controllers;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import util.WebPage;
 
 @Controller
 public class ClientController {
-
-    static final String CLIENT = "client";
-
-    @GetMapping("/" + CLIENT)
+    @GetMapping("/" + WebPage.CLIENT)
     public String getContact() {
-        return CLIENT;
+        return WebPage.CLIENT;
     }
 }
