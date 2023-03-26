@@ -47,7 +47,7 @@
   <section id="container" class="">
 
 
-    <header class="header dark-bg">
+    <header class="header dark-bg" th:fragment="header">
       <div class="toggle-nav">
         <div class="icon-reorder tooltips" data-original-title="Toggle Navigation" data-placement="bottom"><i class="icon_menu"></i></div>
       </div>
@@ -311,7 +311,7 @@
 
     <!--sidebar start-->
     <aside>
-      <div id="sidebar" class="nav-collapse ">
+      <div id="sidebar" class="nav-collapse " th:fragment="sidebar">
         <!-- sidebar menu start-->
         <ul class="sidebar-menu">
           <li class="active">
@@ -330,7 +330,7 @@
               <li><a class="" th:href="@{/vehicle}">Vehicle</a></li>
               <li><a class="" th:href="@{/vehicleMaintenance}">Maintenance</a></li>
               <li><a class="" th:href="@{/vehicleMovement}">Movements</a></li>
-              <li><a class="" th:href="@{vehicleHire}">Hire</a></li>
+              <li><a class="" th:href="@{/vehicleHire}">Hire</a></li>
             </ul>
           </li>
           <li class="sub-menu">
@@ -343,24 +343,57 @@
               <li><a class="" th:href="@{/vahicleMake}">Vehicle Make</a></li>
               <li><a class="" th:href="@{/vehicleType}">Vehicle Types</a></li>
               <li><a class="" th:href="@{/vehicleModel}">Vehicle Models</a></li>
-              <li><a class="" th:href="@{vehicleStatus}">Status Values</a></li>
+              <li><a class="" th:href="@{/vehicleStatus}">Status Values</a></li>
             </ul>
           </li>
-          <li>
-            <a class="" href="widgets.html">
-                          <i class="icon_genius"></i>
-                          <span>Widgets</span>
-                      </a>
+          <li class="sub-menu">
+            <a href="javascript:;" class="">
+              <i class="icon_desktop"></i>
+              <span>People</span>
+              <span class="menu-arrow arrow_carrot-right"></span>
+            </a>
+            <ul class="sub">
+              <li><a class="" th:href="@{/employee}">Employee</a></li>
+              <li><a class="" th:href="@{/client}">Clients</a></li>
+              <li><a class="" th:href="@{/supplier}">Suppliers</a></li>
+              <li><a class="" th:href="@{/contact}">Contacts</a></li>
+              <li><a class="" th:href="@{/user}">Users</a></li>
+            </ul>
           </li>
-          <li>
-            <a class="" href="chart-chartjs.html">
-                          <i class="icon_piechart"></i>
-                          <span>Charts</span>
-
-                      </a>
-
+          <li class="sub-menu">
+            <a href="javascript:;" class="">
+              <i class="icon_desktop"></i>
+              <span>HR Settings</span>
+              <span class="menu-arrow arrow_carrot-right"></span>
+            </a>
+            <ul class="sub">
+              <li><a class="" th:href="@{/jobTitle}">Job Titles</a></li>
+              <li><a class="" th:href="@{/employeeType}">Employee Types</a></li>
+            </ul>
           </li>
-
+          <li class="sub-menu">
+            <a href="javascript:;" class="">
+              <i class="icon_desktop"></i>
+              <span>Accounts</span>
+              <span class="menu-arrow arrow_carrot-right"></span>
+            </a>
+            <ul class="sub">
+              <li><a class="" th:href="@{/invoice}">Invoices</a></li>
+              <li><a class="" th:href="@{/invoiceStatus}">Invoice Status Values</a></li>
+            </ul>
+          </li>
+          <li class="sub-menu">
+            <a href="javascript:;" class="">
+              <i class="icon_desktop"></i>
+              <span>Globals</span>
+              <span class="menu-arrow arrow_carrot-right"></span>
+            </a>
+            <ul class="sub">
+              <li><a class="" th:href="@{/countries}">Countries</a></li>
+              <li><a class="" th:href="@{/state}">States</a></li>
+              <li><a class="" th:href="@{/location}">Locations</a></li>
+            </ul>
+          </li>
           <li class="sub-menu">
             <a href="javascript:;" class="">
                           <i class="icon_table"></i>
@@ -399,7 +432,7 @@
         <!--overview start-->
         <div class="row">
           <div class="col-lg-12">
-            <h3 class="page-header"><i class="fa fa-laptop"></i> Dashboard</h3>
+            <h3 class="page-header"><i class="fa fa-laptop" th:text="${title}"></i></h3>
             <ol class="breadcrumb">
               <li><i class="fa fa-home"></i><a href="index.html">Home</a></li>
               <li><i class="fa fa-laptop"></i>Dashboard</li>
