@@ -66,9 +66,12 @@
                             <td>
                                 <div class="btn-group">
                                     <a th:href="@{/countries/findById/(id=${country.id})}" class="btn btn-primary tooltip-r" id="editButton"
-                                       data-toggle="tooltip" data-placement="left" title="Edit"><img
+                                       data-toggle="tooltip" data-placement="left" title="Edit" th:attr="data-id=${country.id}"><img
                                             alt="avatar"
                                             src="./img/edit.gif" style="max-width: 1.3em; max-height: 1.3em;"></a>
+                                </div>
+                                <div class="btn-group">
+                                    <a class="btn btn-success" id="detailsButton"><i class="icon_document_alt"></i></a>
                                 </div>
                                 <div class="btn-group">
                                     <a th:href="@{'/countries/delete/' + ${country.id}}" class="btn btn-danger tooltip-r" id="deleteButton"

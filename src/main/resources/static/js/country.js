@@ -19,6 +19,9 @@ $('document').ready(function(){
         event.preventDefault();
         var href = $(this).attr('href');
         $('#confirmDeleteButton').attr('href', href);
-        $('#deleteModal').modal();
+        $('#deleteModal').modal({
+            backdrop: 'static',
+            keyboard: false
+        });
     });
 });

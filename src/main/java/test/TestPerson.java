@@ -58,6 +58,5 @@ public class TestPerson {
         @Cleanup ObjectInputStream in = new ObjectInputStream(fis);
         Person person4 = (Person) in.readObject();
         System.out.println("Serialized Person: " + person4);
-
     }
 }
