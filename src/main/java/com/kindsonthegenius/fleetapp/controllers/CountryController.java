@@ -54,12 +54,16 @@ public class CountryController {
     @RequestMapping(value = "/countries/delete/{id}", method = {RequestMethod.DELETE, RequestMethod.GET})
     public String delete(@PathVariable(name = "id") Integer id, RedirectAttributes redirectAttributes) {
         int deleteCountry = service.delete(id);
-        System.out.println(deleteCountry);
         if (deleteCountry == 1) {
             redirectAttributes.addFlashAttribute("success", "Yup, Country has been deleted!");
         } else {
             redirectAttributes.addFlashAttribute("danger", "Nope, Country could not be deleted!");
         }
+        return REDIRECT_COUNTRY;
+    }
+
+    @RequestMapping(value = "/countries/details/{id}", method = {RequestMethod.GET})
+    public String details(@PathVariable(name = "id") Integer id, RedirectAttributes redirectAttributes) {
         return REDIRECT_COUNTRY;
     }
 }

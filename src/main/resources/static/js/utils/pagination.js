@@ -6,7 +6,6 @@ $(document).ready(function(){
         arrayTr.push(tr[i]);
     }
     pagination(tbody, tr, arrayTr);
-
     $("#selectTopic").change(function () {
         let neil = document.getElementsByClassName("page-item");
         Array.from(neil).forEach((el) => el.remove());

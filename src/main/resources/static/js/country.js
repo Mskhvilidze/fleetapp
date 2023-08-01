@@ -24,4 +24,9 @@ $('document').ready(function(){
             keyboard: false
         });
     });
+
+    $('table #detailsButton').on('click', function(event){
+        event.preventDefault();
+        $('#detailsModal').modal();
+    });
 });

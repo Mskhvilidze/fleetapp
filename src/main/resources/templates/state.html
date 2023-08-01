@@ -36,6 +36,52 @@
                 </div>
             </div>
             <!-- page start-->
+            <div class="row">
+                <div class="col-lg-12">
+                    <button type="button" class="btn btn-primary tooltip-r" data-toggle="modal" data-target="#addModal"
+                            title="New Country" data-placement="left">
+                        <img alt="avatar"
+                             src="./img/line-icon-hover.gif" style="max-width: 1.3em; max-height: 1.3em;">
+                    </button>
+                    <table class="table">
+                        <thead>
+                        <tr>
+                            <th>Id</th>
+                            <th>Description</th>
+                            <th>Details</th>
+                            <th>Code</th>
+                            <th>Actions</th>
+                        </tr>
+                        </thead>
+                        <tbody id="tbody">
+                        <tr th:each="state:${states}">
+                            <td th:text="${state.id}"></td>
+                            <td th:text="${state.name}"></td>
+                            <td th:text="${state.details}"></td>
+                            <td th:text="${state.code}"></td>
+                            <td>
+                                <div class="btn-group">
+                                    <a th:href="@{/states/findById/(id=${state.id})}" class="btn btn-primary tooltip-r" id="editButton"
+                                       data-toggle="tooltip" data-placement="left" title="Edit" th:attr="data-id=${state.id}"><img
+                                            alt="avatar"
+                                            src="./img/edit.gif" style="max-width: 1.3em; max-height: 1.3em;"></a>
+                                </div>
+                                <div class="btn-group">
+                                    <a th:href="@{'/states/details/' + ${state.id}}" class="btn btn-success" id="detailsButton"><i
+                                            class="icon_document_alt"></i></a>
+                                </div>
+                                <div class="btn-group">
+                                    <a th:href="@{'/states/delete/' + ${state.id}}" class="btn btn-danger tooltip-r" id="deleteButton"
+                                       data-toggle="tooltip" data-placement="left" title="Delete"><img
+                                            alt="avatar"
+                                            src="./img/delete.gif" style="max-width: 1.3em; max-height: 1.3em;"></a>
+                                </div>
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
             <!-- page end-->
         </section>
     </section>
@@ -47,12 +93,21 @@
               You can delete the links only if you purchased the pro version.
               Licensing information: https://bootstrapmade.com/license/
               Purchase the pro version form: https://bootstrapmade.com/buy/?theme=NiceAdmin
+              Designed by <a href="https://bootstrapmade.com/">BootstrapMade</a>
             -->
-            Designed by <a href="https://bootstrapmade.com/">BootstrapMade</a>
         </div>
     </div>
 </section>
+<!-- container section end -->
+<div th:insert="/utils/state/state_addModal :: addModal">
+</div>
 
+<div th:insert="/utils/state/state_editModal :: editModal">
+</div>
+
+<div th:insert="/utils/state/state_deleteModal :: deleteModal"></div>
+
+<div th:insert="/utils/state/detailsModal :: detailsModal"></div>
 <!-- javascripts -->
 <script src="js/jquery.js"></script>
 <script src="js/bootstrap.min.js"></script>
@@ -62,6 +117,7 @@
 <!--custome script for all page-->
 <script src="js/scripts.js"></script>
 <script src="js/country.js"></script>
+<script src="js/state.js"></script>
 <script src="js/utils/utils.js"></script>
 <script src="js/utils/pagination.js"></script>
 </body>

@@ -71,7 +71,8 @@
                                             src="./img/edit.gif" style="max-width: 1.3em; max-height: 1.3em;"></a>
                                 </div>
                                 <div class="btn-group">
-                                    <a class="btn btn-success" id="detailsButton"><i class="icon_document_alt"></i></a>
+                                    <a th:href="@{'/countries/details/' + ${country.id}}" class="btn btn-success" id="detailsButton"><i
+                                            class="icon_document_alt"></i></a>
                                 </div>
                                 <div class="btn-group">
                                     <a th:href="@{'/countries/delete/' + ${country.id}}" class="btn btn-danger tooltip-r" id="deleteButton"
@@ -114,8 +115,8 @@
               You can delete the links only if you purchased the pro version.
               Licensing information: https://bootstrapmade.com/license/
               Purchase the pro version form: https://bootstrapmade.com/buy/?theme=NiceAdmin
+              Designed by <a href="https://bootstrapmade.com/">BootstrapMade</a>
             -->
-            Designed by <a href="https://bootstrapmade.com/">BootstrapMade</a>
         </div>
     </div>
 </section>
@@ -127,6 +128,7 @@
 </div>
 
 <div th:insert="/utils/deleteModal :: deleteModal"></div>
+<div th:insert="/utils/detailsModal :: detailsModal"></div>
 <!-- javascripts -->
 <script src="js/jquery.js"></script>
 <script src="js/bootstrap.min.js"></script>
