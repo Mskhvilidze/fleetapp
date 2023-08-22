@@ -31,7 +31,7 @@ public class State {
 	private Country country;
 	
 	private Integer countryid;
-	
+	private Integer stateid;
 	private String details;
 	
 }

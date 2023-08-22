@@ -19,7 +19,6 @@ import java.util.Optional;
 
 @Controller
 public class StateController {
-    //TODO Ich war letztes mal hier, Video 21, Minut 11:29
     @Autowired
     private StateService service;
     @Autowired
