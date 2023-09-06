@@ -15,7 +15,7 @@ import java.util.Optional;
 public class LocationService {
 
     @Autowired
-    LocationRepository repository;
+    private LocationRepository repository;
 
     //Return list of state
     public List<Location> getLocations() {
