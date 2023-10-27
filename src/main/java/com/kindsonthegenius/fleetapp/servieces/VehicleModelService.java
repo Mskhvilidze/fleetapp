@@ -6,6 +6,7 @@ import com.kindsonthegenius.fleetapp.repositories.VehicleModelRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
@@ -23,6 +24,10 @@ public class VehicleModelService {
     //Save new State
     public void save(VehicleModel vehicleModel) {
         vehicleModelRepository.save(vehicleModel);
+    }
+
+    public int updateById(int id, String description, String details, String last_modified_by, Date last_modified_date) {
+       return vehicleModelRepository.updateById(id, description, details, last_modified_by, last_modified_date);
     }
 
     //get by id

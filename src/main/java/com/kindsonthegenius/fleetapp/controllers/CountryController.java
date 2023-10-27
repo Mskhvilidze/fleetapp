@@ -1,8 +1,11 @@
 package com.kindsonthegenius.fleetapp.controllers;
 
 import com.kindsonthegenius.fleetapp.model.Country;
+import com.kindsonthegenius.fleetapp.model.State;
 import com.kindsonthegenius.fleetapp.servieces.CountryService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -36,8 +39,13 @@ public class CountryController {
 
     @RequestMapping(value = "countries/findById/")
     @ResponseBody
-    public Optional<Country> findById(int id) {
-        return service.findById(id);
+    public ResponseEntity<?> findById(Integer id) {
+        Country country = service.findById(id).orElse(null);
+        if (country != null) {
+            return ResponseEntity.ok(country);
+        } else {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Statei not found");
+        }
     }
 
     @RequestMapping(value = "/countries/update", method = {RequestMethod.PUT, RequestMethod.GET})
@@ -45,8 +53,13 @@ public class CountryController {
         if (country.getId() == null) {
             redirectAttributes.addFlashAttribute("danger", "Nope, it doesn't work that way!");
         } else {
-            redirectAttributes.addFlashAttribute("success", "Yup, Update was successful!");
-            service.save(country);
+            int is = service.updateById(country.getId(), country.getCapital(), country.getCode(),
+                    country.getContinent(), country.getDescription(), country.getNationality());
+            if (is == 1) {
+                redirectAttributes.addFlashAttribute("success", "Yup, Update was successful!");
+            } else {
+                redirectAttributes.addFlashAttribute("danger", "Nope, Invoice_Status could not be updetad!");
+            }
         }
         return REDIRECT_COUNTRY;
     }
@@ -63,7 +76,14 @@ public class CountryController {
     }
 
     @RequestMapping(value = "/countries/details/{id}", method = {RequestMethod.GET})
-    public String details(@PathVariable(name = "id") Integer id, RedirectAttributes redirectAttributes) {
-        return REDIRECT_COUNTRY;
+    @ResponseBody
+    public ResponseEntity<?> detailsFindById(@PathVariable(name = "id") Integer id) {
+        Country country = service.findById(id).orElse(null);
+        System.out.println("Country: " + country.getCode());
+        if (country != null) {
+            return ResponseEntity.ok(country);
+        } else {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Country not found");
+        }
     }
 }

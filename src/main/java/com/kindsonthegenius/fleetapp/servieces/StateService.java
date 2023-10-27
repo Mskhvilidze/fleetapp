@@ -5,6 +5,7 @@ import com.kindsonthegenius.fleetapp.repositories.StateRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
@@ -25,6 +26,9 @@ public class StateService {
         repository.save(state);
     }
 
+    public int updateById(int id, String name, String details, String code) {
+        return repository.updateById(id, name, details, code);
+    }
     //get by id
     public Optional<State> findById(int id) {
         return repository.findById(id);

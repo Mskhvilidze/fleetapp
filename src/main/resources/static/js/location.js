@@ -8,10 +8,10 @@ $('document').ready(function (){
             $('#loc_codeEdit').val(location.city);
             $('#loc_descriptionEdit').val(location.description);
             $('#loc_detailsEdit').val(location.details);
-            $('#loc_detailsEdit').val(location.details);
+            $('#loc_ClEdit').val(location.country.id);
+            $('#loc_SlEdit').val(location.state.id);
             $('#loc_ddlCountryEdit').val(location.country.id);
-            $('#loc_ddlStateEdit').val(location.state.stateid);
-            alert(states.name);
+            $('#loc_ddlStateEdit').val(location.state.id);
         });
         $('.tooltip-r').tooltip();
         $('#editModal').modal();
@@ -28,6 +28,7 @@ $('document').ready(function (){
             $('#loc_descriptionDeteils').val(location.description);
             $('#loc_detailsDetails').val(location.details);
             $('#loc_stateIdDetails').val(location.stateid);
+            alert(location.stateid);
         });
         $('.tooltip-r').tooltip();
         $('#detailsModal').modal();
@@ -42,4 +43,16 @@ $('document').ready(function (){
             keyboard: false
         });
     })
+
+    $("#loc_ddlCountryEdit").on("change", function () {
+        var selectedOption = $(this).find("option:selected");
+        var countryId = selectedOption.data("countryid");
+        $("#loc_ClEdit").val(countryId);
+    });
+
+    $("#loc_ddlStateEdit").on("change", function () {
+        var selectedOption = $(this).find("option:selected");
+        var stateId = selectedOption.data("stateid");
+        $("#loc_SlEdit").val(stateId);
+    });
 })

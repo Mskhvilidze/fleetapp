@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import util.WebPage;
 
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
@@ -56,8 +57,13 @@ public class LocationController {
         if (location.getId() == null) {
             redirectAttributes.addFlashAttribute("danger", "Nope, it doesn't work that way!");
         } else {
-            redirectAttributes.addFlashAttribute("success", "Yup, Update was successful!");
-            locationService.save(location);
+            int is = locationService.updateById(location.getId(), location.getAddress(), location.getCity(),
+                    location.getCountry().getId(), location.getDescription(), location.getDetails(), location.getState().getId());
+            if (is == 1) {
+                redirectAttributes.addFlashAttribute("success", "Yup, Update was successful!");
+            } else {
+                redirectAttributes.addFlashAttribute("danger", "Nope, Location could not be updetad!");
+            }
         }
         return REDIRECT_LOCATION;
     }

@@ -3,9 +3,10 @@ $('document').ready(function (){
         event.preventDefault();
         let href = $(this).attr('href');
         $.get(href, function (vehicleType, status){
-            $('#loc_idEdit').val(vehicleType.id);
-            $('#loc_descriptionEdit').val(vehicleType.description);
-            $('#loc_detailsEdit').val(vehicleType.details);
+            $('#VT_IDEdit').val(vehicleType.id);
+            $('#VT_descriptionEdit').val(vehicleType.description);
+            $('#VT_detailsedit').val(vehicleType.details);
+            $('#VT_last_modified_dateedit').val(vehicleType.lastModifiedDate.substring(0, 19).replace("T", " "));
         });
         $('.tooltip-r').tooltip();
         $('#editModal').modal();
@@ -15,9 +16,10 @@ $('document').ready(function (){
         event.preventDefault();
         let href = $(this).attr('href');
         $.get(href, function (vehicleType, status){
-            $('#local_idDetails').val(vehicleType.id);
-            $('#loc_codeDeteils').val(vehicleType.countryid);
-            $('#loc_descriptionDeteils').val(vehicleType.description);
+            $('#VT_IDDetails').val(vehicleType.id);
+            $('#VT_descriptionDetails').val(vehicleType.description);
+            $('#VT_detailsDetails').val(vehicleType.details);
+            $('#VT_last_modified_dateDetails').val(vehicleType.lastModifiedDate.substring(0, 19).replace("T", " "));
         });
         $('.tooltip-r').tooltip();
         $('#detailsModal').modal();

@@ -8,10 +8,19 @@ import org.springframework.stereotype.Repository;
 import com.kindsonthegenius.fleetapp.model.InvoiceStatus;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.Date;
+
 @Repository
 public interface InvoiceStatusRepository extends JpaRepository<InvoiceStatus, Integer> {
     @Transactional
     @Modifying
     @Query(nativeQuery = true, value = "delete from fleetappdb.invoice_status where id = ?")
     int deleteLocation(int id);
+
+    @Transactional
+    @Modifying
+    @Query(nativeQuery = true, value = "UPDATE fleetappdb.invoice_status set description = ?2, " +
+            "details = ?3, last_modified_by = ?4, last_modified_date = ?5 where id = ?1")
+    int updateById(int id, String description, String details, String last_modified_by, Date last_modified_date);
+
 }

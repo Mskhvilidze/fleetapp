@@ -2,26 +2,49 @@ $('document').ready(function (){
     $('table #editButton').on('click', function (event){
         event.preventDefault();
         let href = $(this).attr('href');
-        $.get(href, function (invoiceStatus, status){
-            $('#loc_idEdit').val(invoiceStatus.id);
-            $('#loc_descriptionEdit').val(invoiceStatus.description);
-            $('#loc_detailsEdit').val(invoiceStatus.details);
-            alert(states.name);
-        });
-        $('.tooltip-r').tooltip();
-        $('#editModal').modal();
+        $.get(href, function (invoiceStatus, status) {
+            $('#ISV_IDEdit').val(invoiceStatus.id);
+            $('#ISV_descriptionEdit').val(invoiceStatus.description);
+            $('#ISV_detailsedit').val(invoiceStatus.details);
+            $('#ISV_last_modified_dateedit').val(invoiceStatus.lastModifiedDate.substring(0, 19).replace("T", " "));
+        })
+            .done(function () {
+                // Erfolgreicher Abschluss
+                $('.tooltip-r').tooltip();
+                $('#editModal').modal();
+            })
+            .fail(function (jqXHR, textStatus, errorThrown) {
+                // Fehlerbehandlung
+                if (jqXHR.status === 404) {
+                    alert("Error: " + jqXHR.responseText);
+                } else {
+                    alert("Ein Fehler ist aufgetreten: " + textStatus);
+                }
+            });
     });
 
     $('table #detailsButton').on('click', function (event) {
         event.preventDefault();
         let href = $(this).attr('href');
-        $.get(href, function (invoiceStatus, status){
-            $('#local_idDetails').val(invoiceStatus.id);
-            $('#loc_descriptionDeteils').val(invoiceStatus.description);
-            $('#loc_detailsDetails').val(invoiceStatus.details);
-        });
-        $('.tooltip-r').tooltip();
-        $('#detailsModal').modal();
+        $.get(href, function (invoiceStatus, status) {
+            $('#ISV_IDDetails').val(invoiceStatus.id);
+            $('#ISV_descriptionDetails').val(invoiceStatus.description);
+            $('#ISV_detailsDetails').val(invoiceStatus.details);
+            $('#ISV_last_modified_dateDetails').val(invoiceStatus.lastModifiedDate.substring(0, 19).replace("T", " "));
+        })
+            .done(function () {
+                // Erfolgreicher Abschluss
+                $('.tooltip-r').tooltip();
+                $('#editModal').modal();
+            })
+            .fail(function (jqXHR, textStatus, errorThrown) {
+                // Fehlerbehandlung
+                if (jqXHR.status === 404) {
+                    alert("Error: " + jqXHR.responseText);
+                } else {
+                    alert("Ein Fehler ist aufgetreten: " + textStatus);
+                }
+            });
     });
 
     $('table #deleteButton').on('click', function (event){

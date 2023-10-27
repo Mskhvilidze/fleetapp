@@ -3,9 +3,10 @@ $('document').ready(function (){
         event.preventDefault();
         let href = $(this).attr('href');
         $.get(href, function (vehicleStatus, status){
-            $('#loc_idEdit').val(vehicleStatus.id);
-            $('#loc_descriptionEdit').val(vehicleStatus.description);
-            $('#loc_detailsEdit').val(vehicleStatus.details);
+            $('#VS_IDEdit').val(vehicleStatus.id);
+            $('#VS_descriptionEdit').val(vehicleStatus.description);
+            $('#VS_detailsedit').val(vehicleStatus.details);
+            $('#VS_last_modified_dateedit').val(vehicleStatus.lastModifiedDate.substring(0, 19).replace("T", " "));
         });
         $('.tooltip-r').tooltip();
         $('#editModal').modal();
@@ -14,10 +15,12 @@ $('document').ready(function (){
     $('table #detailsButton').on('click', function (event) {
         event.preventDefault();
         let href = $(this).attr('href');
+        alert(href);
         $.get(href, function (vehicleStatus, status){
-            $('#local_idDetails').val(vehicleStatus.id);
-            $('#loc_codeDeteils').val(vehicleStatus.countryid);
-            $('#loc_descriptionDeteils').val(vehicleStatus.description);
+            $('#VS_IDDetails').val(vehicleStatus.id);
+            $('#VS_descriptionDetails').val(vehicleStatus.description);
+            $('#VS_detailsDetails').val(vehicleStatus.details);
+            $('#VS_last_modified_dateDetails').val(vehicleStatus.lastModifiedDate.substring(0, 19).replace("T", " "));
         });
         $('.tooltip-r').tooltip();
         $('#detailsModal').modal();

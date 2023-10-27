@@ -35,6 +35,10 @@
                     </ol>
                 </div>
             </div>
+            <div id="flash" style="max-width:500px;margin:auto">
+                <p th:text="${danger}"></p>
+                <p th:text="${success}"></p>
+            </div>
             <!-- page start-->
             <div class="row">
                 <div class="col-lg-12">
@@ -61,10 +65,10 @@
                             <td th:text="${location.id}"></td>
                             <td th:text="${location.address}"></td>
                             <td th:text="${location.city}"></td>
-                            <td th:text="${location.countryid}"></td>
+                            <td th:text="${location.country.id}"></td>
                             <td th:text="${location.description}"></td>
                             <td th:text="${location.details}"></td>
-                            <td th:text="${location.stateid}"></td>
+                            <td th:text="${location.state.id}"></td>
                             <td>
                                 <div class="btn-group">
                                     <a th:href="@{/location/findById/(id=${location.id})}" class="btn btn-primary tooltip-r" id="editButton"

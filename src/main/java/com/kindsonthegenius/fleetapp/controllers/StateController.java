@@ -8,14 +8,14 @@ import org.apache.tomcat.util.json.JSONParser;
 import org.json.JSONArray;
 import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import util.WebPage;
-
 import java.util.List;
-import java.util.Optional;
 
 @Controller
 public class StateController {
@@ -44,8 +44,13 @@ public class StateController {
 
     @RequestMapping(value = "states/findById/")
     @ResponseBody
-    public Optional<State> findById(int id) {
-        return service.findById(id);
+    public ResponseEntity<?> findById(Integer id) {
+        State state = service.findById(id).orElse(null);
+        if (state != null) {
+            return ResponseEntity.ok(state);
+        } else {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Statei not found");
+        }
     }
 
     @RequestMapping(value = "/states/update", method = {RequestMethod.PUT, RequestMethod.GET})
@@ -53,8 +58,13 @@ public class StateController {
         if (state.getId() == null) {
             redirectAttributes.addFlashAttribute("danger", "Nope, it doesn't work that way!");
         } else {
-            redirectAttributes.addFlashAttribute("success", "Yup, Update was successful!");
-            service.save(state);
+            int is = service.updateById(state.getId(), state.getName(), state.getDetails(),
+                    state.getCode());
+            if (is == 1) {
+                redirectAttributes.addFlashAttribute("success", "Yup, Update was successful!");
+            } else {
+                redirectAttributes.addFlashAttribute("danger", "Nope, Invoice_Status could not be updetad!");
+            }
         }
         return REDIRECT_STATE;
     }
@@ -72,8 +82,13 @@ public class StateController {
 
     @RequestMapping(value = "/states/details/{id}", method = {RequestMethod.GET})
     @ResponseBody
-    public Optional<State> detailsFindById(@PathVariable(name = "id") Integer id, RedirectAttributes redirectAttributes) {
-        return findById(id);
+    public ResponseEntity<?> detailsFindById(@PathVariable(name = "id") Integer id) {
+        State state = service.findById(id).orElse(null);
+        if (state != null) {
+            return ResponseEntity.ok(state);
+        } else {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("State not found");
+        }
     }
 
     @RequestMapping(value = "/states/details/100", method = {RequestMethod.POST})

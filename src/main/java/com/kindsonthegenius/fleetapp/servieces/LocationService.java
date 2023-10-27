@@ -22,6 +22,10 @@ public class LocationService {
         return repository.findAll();
     }
 
+    public int  updateById(int id, String address, String city, Integer countryid, String description, String details, Integer stateid){
+        return repository.updateById(id, address, city, countryid, description, details, stateid);
+    }
+
     //Save new State
     public void save(Location location) {
         repository.save(location);

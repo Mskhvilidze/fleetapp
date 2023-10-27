@@ -35,7 +35,75 @@
                     </ol>
                 </div>
             </div>
+            <div id="flash" style="max-width:500px;margin:auto">
+                <p th:text="${danger}"></p>
+                <p th:text="${success}"></p>
+            </div>
             <!-- page start-->
+            <div class="row">
+                <div class="col-lg-12">
+                    <button type="button" class="btn btn-primary tooltip-r" data-toggle="modal" data-target="#addModal"
+                            title="New JobTitle" data-placement="left">
+                        <img alt="avatar"
+                             src="./img/line-icon-hover.gif" style="max-width: 1.3em; max-height: 1.3em;">
+                    </button>
+                    <table class="table">
+                        <thead>
+                        <tr>
+                            <th>Id</th>
+                            <th>Description</th>
+                            <th>Details</th>
+                            <th>Date</th>
+                            <th>Action</th>
+                        </tr>
+                        </thead>
+                        <tbody id="tbody">
+                        <tr th:each="jobTitle:${jobTitleList}">
+                            <td th:text="${jobTitle.id}"></td>
+                            <td th:text="${jobTitle.description}"></td>
+                            <td th:text="${jobTitle.details}"></td>
+                            <td th:text="${jobTitle.lastModifiedDate}"></td>
+                            <td>
+                                <div class="btn-group">
+                                    <a th:href="@{/jobTitle/findById/(id=${jobTitle.id})}" class="btn btn-primary tooltip-r" id="editButton"
+                                       data-toggle="tooltip" data-placement="left" title="Edit" th:attr="data-id=${jobTitle.id}"><img
+                                            alt="avatar"
+                                            src="./img/edit.gif" style="max-width: 1.3em; max-height: 1.3em;"></a>
+                                </div>
+                                <div class="btn-group">
+                                    <a th:href="@{'/jobTitle/details/' + ${jobTitle.id}}" class="btn btn-success" id="detailsButton"><i
+                                            class="icon_document_alt"></i></a>
+                                </div>
+                                <div class="btn-group">
+                                    <a th:href="@{'/jobTitle/delete/' + ${jobTitle.id}}" class="btn btn-danger tooltip-r" id="deleteButton"
+                                       data-toggle="tooltip" data-placement="left" title="Delete"><img
+                                            alt="avatar"
+                                            src="./img/delete.gif" style="max-width: 1.3em; max-height: 1.3em;"></a>
+                                </div>
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <div>
+                <nav aria-label="Page navigation example">
+                    <ul class="pagination">
+                    </ul>
+                </nav>
+
+                <section>
+                    <p>View item a page</p>
+                    <select name="" id="selectTopic">
+                        <option value="2">2</option>
+                        <option value="4">4</option>
+                        <option value="6" selected>6</option>
+                        <option value="8">8</option>
+                        <option value="10">10</option>
+                        <option value="12">12</option>
+                    </select>
+                </section>
+            </div>
             <!-- page end-->
         </section>
     </section>
@@ -52,7 +120,14 @@
         </div>
     </div>
 </section>
-
+<div th:insert="/utils/jobTitles/jobTitles_addModal :: addModal">
+</div>
+<div th:insert="/utils/jobTitles/jobTitles_editModal :: editModal">
+</div>
+<div th:insert="/utils/jobTitles/jobTitles_detailsModal :: detailsModal">
+</div>
+<div th:insert="/utils/jobTitles/jobTitles_deleteModal :: deleteModal">
+</div>
 <!-- javascripts -->
 <script src="js/jquery.js"></script>
 <script src="js/bootstrap.min.js"></script>
@@ -61,7 +136,7 @@
 <script src="js/jquery.nicescroll.js" type="text/javascript"></script>
 <!--custome script for all page-->
 <script src="js/scripts.js"></script>
-<script src="js/country.js"></script>
+<script src="js/jobTitle.js"></script>
 <script src="js/utils/utils.js"></script>
 <script src="js/utils/pagination.js"></script>
 </body>

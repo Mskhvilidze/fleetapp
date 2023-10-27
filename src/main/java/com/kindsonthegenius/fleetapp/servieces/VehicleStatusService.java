@@ -6,6 +6,7 @@ import com.kindsonthegenius.fleetapp.repositories.VehicleStatusRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
@@ -28,6 +29,10 @@ public class VehicleStatusService {
     //get by id
     public Optional<VehicleStatus> findById(int id) {
         return vehicleStatusRepository.findById(id);
+    }
+
+    public int updateById(int id, String description, String details, String last_modified_by, Date last_modified_date) {
+        return vehicleStatusRepository.updateById(id, description, details, last_modified_by, last_modified_date);
     }
 
     public int delete(Integer id){

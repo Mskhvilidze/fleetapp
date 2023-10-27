@@ -23,27 +23,36 @@
                     </div>
                     <div class="form-group">
                         <label for="loc_addressEdit" class="col-form-label">Address:</label>
-                        <input type="text" class="form-control" id="loc_addressEdit" name="description">
+                        <input type="text" class="form-control" id="loc_addressEdit" name="address">
                     </div>
                     <div class="form-group">
-                        <label for="loc_codeEdit" class="col-form-label">Code:</label>
-                        <input type="text" class="form-control" id="loc_codeEdit" name="code">
+                        <label for="loc_codeEdit" class="col-form-label">City:</label>
+                        <input type="text" class="form-control" id="loc_codeEdit" name="city">
                     </div>
                     <div class="form-group">
                         <label for="loc_descriptionEdit" class="col-form-label">Description:</label>
-                        <input type="text" class="form-control" id="loc_descriptionEdit" name="continent">
+                        <input type="text" class="form-control" id="loc_descriptionEdit" name="description">
                     </div>
                     <div class="form-group">
                         <label for="loc_detailsEdit" class="col-form-label">Details:</label>
-                        <input type="text" class="form-control" id="loc_detailsEdit" name="nationality">
+                        <input type="text" class="form-control" id="loc_detailsEdit" name="details">
+                    </div>
+                    <div class="form-group">
+                        <label for="loc_ClEdit" class="col-form-label">CountryID:</label>
+                        <input type="text" class="form-control" id="loc_ClEdit" name="country" readonly>
+                    </div>
+                    <div class="form-group">
+                        <label for="loc_SlEdit" class="col-form-label">StateID:</label>
+                        <input type="text" class="form-control" id="loc_SlEdit" name="state" readonly>
                     </div>
                     <div class="form-group">
                         <label for="loc_ddlCountryEdit" class="col-form-label">Country:</label>
                         <select class="form-control" id="loc_ddlCountryEdit" name="countryid">
-                            <option>-SELECT-</option>
+                            <option id="cV">-SELECT-</option>
                             <option th:each="country : ${countries}"
                                     th:value="${country.id}"
-                                    th:text="${country.description}">
+                                    th:text="${country.description}"
+                                    th:attr="data-countryId = ${country.id}">
                             </option>
                         </select>
                     </div>
@@ -53,9 +62,13 @@
                             <option>-SELECT-</option>
                             <option th:each="state : ${states}"
                                     th:value="${state.id}"
-                                    th:text="${state.name}">
+                                    th:text="${state.name}"
+                                    th:attr="data-stateId = ${state.id}">
                             </option>
                         </select>
+                    </div>
+                    <div class="form-group">
+                        <button type="submit" class="btn btn-primary">Submit</button>
                     </div>
                 </form>
             </div>

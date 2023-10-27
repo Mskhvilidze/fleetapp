@@ -22,6 +22,10 @@ public class CountryService {
         return repository.findAll();
     }
 
+    public int updateById(int id, String capital, String code, String continent, String description, String nationality){
+        return repository.updateById(id, capital, code,continent, description, nationality);
+    }
+
     //Save new Country
     public void save(Country country) {
         repository.save(country);

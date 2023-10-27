@@ -6,6 +6,7 @@ import com.kindsonthegenius.fleetapp.repositories.JobTitleRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
@@ -23,6 +24,10 @@ public class JobTitleService {
     //Save new State
     public void save(JobTitle jobTitle) {
         jobTitleRepository.save(jobTitle);
+    }
+
+    public int updateById(int id, String description, String details, String last_modified_by, Date last_modified_date) {
+        return jobTitleRepository.updateById(id, description, details, last_modified_by, last_modified_date);
     }
 
     //get by id

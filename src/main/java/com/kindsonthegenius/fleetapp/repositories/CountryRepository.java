@@ -21,4 +21,10 @@ public interface CountryRepository extends JpaRepository<Country, Integer> {
     @Modifying
     @Query(nativeQuery = true, value = "delete from country where id = ?")
     int deleteCountry(int id);
+
+    @Transactional
+    @Modifying
+    @Query(nativeQuery = true, value = "UPDATE fleetappdb.country set capital = ?2, " +
+            "code = ?3, continent = ?4, description = ?5, nationality = ?6 where id = ?1")
+    int updateById(int id, String capital, String code, String continent, String description, String nationality);
 }

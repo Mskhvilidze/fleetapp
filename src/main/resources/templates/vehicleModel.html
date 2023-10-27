@@ -27,7 +27,7 @@
         <section class="wrapper">
             <div class="row">
                 <div class="col-lg-12">
-                    <h3 class="page-header"><i class="fa fa fa-bars"></i> List of VehicleModel</h3>
+                    <h3 class="page-header"><i class="fa fa fa-bars"></i> List of VehicleMake</h3>
                     <ol class="breadcrumb">
                         <li><i class="fa fa-home"></i><a href="index.html">Home</a></li>
                         <li><i class="fa fa-bars"></i>Pages</li>
@@ -36,6 +36,68 @@
                 </div>
             </div>
             <!-- page start-->
+            <div class="row">
+                <div class="col-lg-12">
+                    <button type="button" class="btn btn-primary tooltip-r" data-toggle="modal" data-target="#addModal"
+                            title="New VehicleModel" data-placement="left">
+                        <img alt="avatar"
+                             src="./img/line-icon-hover.gif" style="max-width: 1.3em; max-height: 1.3em;">
+                    </button>
+                    <table class="table">
+                        <thead>
+                        <tr>
+                            <th>Id</th>
+                            <th>Description</th>
+                            <th>Details</th>
+                            <th>Action</th>
+                        </tr>
+                        </thead>
+                        <tbody id="tbody">
+                        <tr th:each="vehicleModel:${vehicleModelList}">
+                            <td th:text="${vehicleModel.id}"></td>
+                            <td th:text="${vehicleModel.description}"></td>
+                            <td th:text="${vehicleModel.details}"></td>
+                            <td>
+                                <div class="btn-group">
+                                    <a th:href="@{/vehicleModel/findById/(id=${vehicleModel.id})}" class="btn btn-primary tooltip-r" id="editButton"
+                                       data-toggle="tooltip" data-placement="left" title="Edit" th:attr="data-id=${vehicleModel.id}"><img
+                                            alt="avatar"
+                                            src="./img/edit.gif" style="max-width: 1.3em; max-height: 1.3em;"></a>
+                                </div>
+                                <div class="btn-group">
+                                    <a th:href="@{'/vehicleModel/details/' + ${vehicleModel.id}}" class="btn btn-success" id="detailsButton"><i
+                                            class="icon_document_alt"></i></a>
+                                </div>
+                                <div class="btn-group">
+                                    <a th:href="@{'/vehicleModel/delete/' + ${vehicleModel.id}}" class="btn btn-danger tooltip-r" id="deleteButton"
+                                       data-toggle="tooltip" data-placement="left" title="Delete"><img
+                                            alt="avatar"
+                                            src="./img/delete.gif" style="max-width: 1.3em; max-height: 1.3em;"></a>
+                                </div>
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <div>
+                <nav aria-label="Page navigation example">
+                    <ul class="pagination">
+                    </ul>
+                </nav>
+
+                <section>
+                    <p>View item a page</p>
+                    <select name="" id="selectTopic">
+                        <option value="2">2</option>
+                        <option value="4">4</option>
+                        <option value="6" selected>6</option>
+                        <option value="8">8</option>
+                        <option value="10">10</option>
+                        <option value="12">12</option>
+                    </select>
+                </section>
+            </div>
             <!-- page end-->
         </section>
     </section>
@@ -52,7 +114,14 @@
         </div>
     </div>
 </section>
-
+<div th:insert="/utils/vehicleModel/vehicleModel_addModal :: addModal">
+</div>
+<div th:insert="/utils/vehicleModel/vehicleModel_editModal :: editModal">
+</div>
+<div th:insert="/utils/vehicleModel/vehicleModel_detailsModal :: detailsModal">
+</div>
+<div th:insert="/utils/vehicleModel/vehicleModel_deleteModal :: deleteModal">
+</div>
 <!-- javascripts -->
 <script src="js/jquery.js"></script>
 <script src="js/bootstrap.min.js"></script>
@@ -61,7 +130,7 @@
 <script src="js/jquery.nicescroll.js" type="text/javascript"></script>
 <!--custome script for all page-->
 <script src="js/scripts.js"></script>
-<script src="js/country.js"></script>
+<script src="js/vehicleModel.js"></script>
 <script src="js/utils/utils.js"></script>
 <script src="js/utils/pagination.js"></script>
 </body>

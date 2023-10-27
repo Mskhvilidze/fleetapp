@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+
+<head th:insert="head :: head">
+</head>
+
+<body>
+<!-- container section end -->
+<div class="modal fade" id="editModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" th:fragment="editModal">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="">Update VehicleType</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form th:action="@{/invoiceStatus/update}" method="put" data-nos>
+                    <div class="form-group">
+                        <label for="ISV_IDEdit" class="col-form-label">Id:</label>
+                        <input type="text" class="form-control" id="ISV_IDEdit" name="id" readonly>
+                    </div>
+                    <div class="form-group">
+                        <label for="ISV_descriptionEdit" class="col-form-label">Description:</label>
+                        <input type="text" class="form-control" id="ISV_descriptionEdit" name="description" >
+                    </div>
+                    <div class="form-group">
+                        <label for="ISV_detailsedit" class="col-form-label">Details:</label>
+                        <input type="text" class="form-control" id="ISV_detailsedit" name="details">
+                    </div>
+                    <div class="form-group">
+                        <label for="ISV_last_modified_dateedit" class="col-form-label">Last Modified Date:</label>
+                        <input type="text" class="form-control" id="ISV_last_modified_dateedit" name="last_modified_date" readonly>
+                    </div>
+                    <div class="form-group">
+                        <button type="submit" class="btn btn-primary">Submit</button>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- javascripts -->
+<script src="js/jquery.js"></script>
+<script src="js/bootstrap.min.js"></script>
+<!-- nice scroll -->
+<script src="js/jquery.scrollTo.min.js"></script>
+<script src="js/jquery.nicescroll.js" type="text/javascript"></script>
+<!--custome script for all page-->
+<script src="js/scripts.js"></script>
+<script src="js/vehicleType.js"></script>
+</body>
+
+</html>
