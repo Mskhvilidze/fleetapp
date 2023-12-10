@@ -1,12 +1,8 @@
 package com.kindsonthegenius.fleetapp.model;
 
 import java.util.Date;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToOne;
+
+import jakarta.persistence.*;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
@@ -30,14 +26,14 @@ public class Invoice {
 	
 	@DateTimeFormat(pattern = "yyyy-MM-dd")	
 	private Date invoiceDate;
-	
+
 	@ManyToOne
 	@JoinColumn(name="invoicestatusid", insertable=false, updatable=false)	
 	private InvoiceStatus invoiceStatus;
 	private Integer invoicestatusid;
-	
+
 	@ManyToOne
-	@JoinColumn(name="clientid", insertable=false, updatable=false)	
+	@JoinColumn(name="clientid", insertable=false, updatable=false)
 	private Client client;
 	private Integer clientid;
 	

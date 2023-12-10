@@ -15,12 +15,15 @@ function updateDetailsFromSelect(x) {
     var continent = selectedOption.getAttribute('data-continent');
     var capital = selectedOption.getAttribute("data-capital");
     var nationality = selectedOption.getAttribute("data-nationality");
+    var id = selectedOption.getAttribute("data-id");
 
     var inputContinent = document.getElementById("continentDetails");
     var inputNationality = document.getElementById("nationalityDetails");
     var inputCapital = document.getElementById("capitalDetails");
+    var inputCode = document.getElementById("codeDetails");
 
     inputContinent.value = continent;
     inputNationality.value = nationality;
     inputCapital.value = capital;
+    inputCode.value = id;
 }

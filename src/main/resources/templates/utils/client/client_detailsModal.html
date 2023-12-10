@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head th:insert="~{head :: head}"></head>
+<body>
+<div class="modal fade" id="detailsModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true"
+     th:fragment="detailsModal">
+    <div class="modal-dialog" role="document">
+        <div class="modal-header">
+            <div class="modal-header">
+                <h5 class="modal-title" id="editModalLabel">Details Client</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form th:action="@{/clients/details}" method="GET" data-nos>
+                    <table style="width: 100%">
+                        <tr>
+                            <td style="width: 50%">
+                                <div class="form-group">
+                                    <label for="ClientIDDetails" class="col-form-label">ID:</label>
+                                    <input type="text" class="form-control" id="ClientIDDetails" name="id" readonly>
+                                </div>
+                                <div class="form-group">
+                                    <label for="ClientCountryDetails" class="col-form-label">Country:</label>
+                                    <select class="form-control" id="ClientCountryDetails" name="countryid">
+                                        <option>-SELECT-</option>
+                                        <option th:each="country : ${countries}"
+                                                th:value="${country.id}"
+                                                th:text="${country.description}">
+                                        </option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label for="ClientStateDetails" class="col-form-label">State:</label>
+                                    <select class="form-control" id="ClientStateDetails" name="stateid">
+                                        <option>-SELECT-</option>
+                                        <option th:each="state : ${states}"
+                                                th:value="${state.id}"
+                                                th:text="${state.name}">
+                                        </option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label for="ClientNameDetails" class="col-form-label">Name:</label>
+                                    <input type="text" class="form-control" id="ClientNameDetails" name="name">
+                                </div>
+                                <div class="form-group">
+                                    <label for="ClientDetailsDetails" class="col-form-label">Details:</label>
+                                    <input type="text" class="form-control" id="ClientDetailsDetails" name="details">
+                                </div>
+                                <div class="form-group">
+                                    <label for="ClientWebsiteDetails" class="col-form-label">Website:</label>
+                                    <input type="text" class="form-control" id="ClientWebsiteDetails" name="website">
+                                </div>
+                            </td>
+                            <td style="width: 50%; padding-left: 10px">
+                                <div class="form-group">
+                                    <label for="ClientAddressDetails" class="col-form-label">Address:</label>
+                                    <input type="text" class="form-control" id="ClientAddressDetails" name="address">
+                                </div>
+                                <div class="form-group">
+                                    <label for="ClientCityDetails" class="col-form-label">City:</label>
+                                    <input type="text" class="form-control" id="ClientCityDetails" name="city">
+                                </div>
+                                <div class="form-group">
+                                    <label for="ClientPhoneDetails" class="col-form-label">Phone:</label>
+                                    <input type="text" class="form-control" id="ClientPhoneDetails" name="phone">
+                                </div>
+                                <div class="form-group">
+                                    <label for="ClientMobileDetails" class="col-form-label">Mobile:</label>
+                                    <input type="text" class="form-control" id="ClientMobileDetails" name="mobile">
+                                </div>
+                                <div class="form-group">
+                                    <label for="ClientEmailDetails" class="col-form-label">E-Mail:</label>
+                                    <input type="text" class="form-control" id="ClientEmailDetails" name="email">
+                                </div>
+                            </td>
+                        </tr>
+                    </table>
+                    <div class="form-group">
+                        <button type="submit" class="btn btn-primary">Submit</button>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

@@ -28,7 +28,6 @@ $('document').ready(function (){
             $('#loc_descriptionDeteils').val(location.description);
             $('#loc_detailsDetails').val(location.details);
             $('#loc_stateIdDetails').val(location.stateid);
-            alert(location.stateid);
         });
         $('.tooltip-r').tooltip();
         $('#detailsModal').modal();

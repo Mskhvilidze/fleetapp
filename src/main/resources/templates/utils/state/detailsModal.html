@@ -15,15 +15,16 @@
             <div class="modal-body">
                 <form th:action="@{/states/details}" method="GET" data-nos>
                     <div class="form-group">
-                        <label for="ddlCountryDetails" class="col-form-label">Country:</label>
-                        <select class="form-control" id="ddlCountryDetails" name="countryid" onchange="updateDetailsFromSelect(this)">
+                        <label for="StateCountryDetails" class="col-form-label">Country:</label>
+                        <select class="form-control" id="StateCountryDetails" name="countryid" onchange="updateDetailsFromSelect(this)">
                             <option>-SELECT-</option>
                             <option th:each="country : ${countries}"
                                     th:value="${country.id}"
                                     th:text="${country.description}"
                                     th:attr="data-continent=${country.continent},
                                     data-capital=${country.capital},
-                                    data-nationality=${country.nationality}">
+                                    data-nationality=${country.nationality},
+                                    data-id=${country.id}">
                             </option>
                         </select>
                     </div>

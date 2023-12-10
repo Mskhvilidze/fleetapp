@@ -19,8 +19,6 @@ import util.WebPage;
 
 import java.util.List;
 
-import static org.springframework.web.servlet.function.RequestPredicates.accept;
-
 @Controller
 public class ClientController {
     @Autowired
@@ -29,29 +27,31 @@ public class ClientController {
     private CountryService countryService;
     @Autowired
     private StateService stateServiceService;
-    private static final String REDIRECT_STATE = "redirect:/state";
-    private static final Logger logger = LogManager.getLogger(ClientController.class);
+    private static final String REDIRECT_CLIENT = "redirect:/client";
+    private static final Logger LOG = LogManager.getLogger(ClientController.class);
+
     @GetMapping("/" + WebPage.CLIENT)
     public String getState(Model model) {
-        List<Client> clientList = service.getStates();
+        List<Client> clientList = service.getClients();
         List<Country> countryList = countryService.getCountries();
-        List<State> stateList  = stateServiceService.getStates();
-        System.out.println("SAFas");
-        logger.info("AAAa");
-        logger.debug("BBBB");
-        logger.warn("CCC");
-        logger.fatal("DDDD");
+        List<State> stateList = stateServiceService.getStates();
+
         model.addAttribute("countries", countryList);
-        model.addAttribute("clients", clientList);
+        model.addAttribute("clientList", clientList);
         model.addAttribute("states", stateList);
         model.addAttribute("title", "Client Management");
         return WebPage.CLIENT;
     }
 
-    @PostMapping("/clients/addNew")
-    public String addNew(@ModelAttribute Client client) {
+    @PostMapping("/client/addNew")
+    public ResponseEntity<?> addNew(@ModelAttribute Client client) {
+        if (client.getName() == null || client.getName().isEmpty()) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND)
+                    .body("Client wurde nicht erstellt! Bitte füllen Sie die erfolderischen Felder");
+        }
+        LOG.info("Client Details {} und Name {}", client.getDetails(), client.getName());
         service.save(client);
-        return REDIRECT_STATE;
+        return ResponseEntity.status(HttpStatus.CREATED).body("Client wurde erfolgreich erstellt");
     }
 
     @RequestMapping(value = "clients/findById/")
@@ -61,7 +61,8 @@ public class ClientController {
         if (client != null) {
             return ResponseEntity.ok(client);
         } else {
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Statei not found");
+            LOG.error("Error: {}", "Client not Found");
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Nope, Client not found");
         }
     }
 
@@ -70,36 +71,39 @@ public class ClientController {
         if (client.getId() == null) {
             redirectAttributes.addFlashAttribute("danger", "Nope, it doesn't work that way!");
         } else {
-            int is = service.updateById(client.getId(), client.getName(), client.getDetails(),
-                    client.getAddress(), client.getEmail(), client.getPhone(), client.getWebsite());
+            LOG.info("ID {}, ID2 {}", client.getStateid());
+            int is = service.updateById(client.getId(), client.getCountryid(), client.getStateid(), client.getName(),
+                    client.getDetails(), client.getWebsite(), client.getAddress(), client.getCity(), client.getPhone(),
+                    client.getMobile(), client.getEmail());
             if (is == 1) {
                 redirectAttributes.addFlashAttribute("success", "Yup, Update was successful!");
             } else {
-                redirectAttributes.addFlashAttribute("danger", "Nope, Invoice_Status could not be updetad!");
+                redirectAttributes.addFlashAttribute("danger", "Nope, Client could not be updetad!");
             }
         }
-        return REDIRECT_STATE;
+        return REDIRECT_CLIENT;
     }
 
     @RequestMapping(value = "/clients/delete/{id}", method = {RequestMethod.DELETE, RequestMethod.GET})
     public String delete(@PathVariable(name = "id") Integer id, RedirectAttributes redirectAttributes) {
         int deleteCountry = service.delete(id);
         if (deleteCountry == 1) {
-            redirectAttributes.addFlashAttribute("success", "Yup, Country has been deleted!");
+            redirectAttributes.addFlashAttribute("success", "Yup, Client has been deleted!");
         } else {
-            redirectAttributes.addFlashAttribute("danger", "Nope, Country could not be deleted!");
+            redirectAttributes.addFlashAttribute("danger", "Nope, Client could not be deleted!");
         }
-        return REDIRECT_STATE;
+        return REDIRECT_CLIENT;
     }
 
     @RequestMapping(value = "/clients/details/{id}", method = {RequestMethod.GET})
     @ResponseBody
     public ResponseEntity<?> detailsFindById(@PathVariable(name = "id") Integer id) {
         Client client = service.findById(id).orElse(null);
+        LOG.info("Client Details: {}" + client.getName());
         if (client != null) {
             return ResponseEntity.ok(client);
         } else {
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("State not found");
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Client not found");
         }
     }
 }

@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
 
-<head th:insert="/utils/head :: head">
+<head th:insert="~{/utils/head :: head}">
 
 </head>
 
@@ -10,13 +10,13 @@
 <section id="container" class="">
     <!--header start-->
 
-    <header class="header dark-bg" th:insert="index :: header">
+    <header class="header dark-bg" th:insert="~{index :: header}">
     </header>
     <!--header end-->
 
     <!--sidebar start-->
     <aside>
-        <div id="sidebar" class="nav-collapse " th:insert="index :: sidebar">
+        <div id="sidebar" class="nav-collapse " th:insert="~{index :: sidebar}">
             <!-- sidebar menu end-->
         </div>
     </aside>
@@ -103,15 +103,15 @@
     </div>
 </section>
 <!-- container section end -->
-<div th:insert="/utils/state/state_addModal :: addModal">
+<div th:insert="~{/utils/state/state_addModal :: addModal}">
 </div>
 
-<div th:insert="/utils/state/state_editModal :: editModal">
+<div th:insert="~{/utils/state/state_editModal :: editModal}">
 </div>
 
-<div th:insert="/utils/state/state_deleteModal :: deleteModal"></div>
+<div th:insert="~{/utils/state/state_deleteModal :: deleteModal}"></div>
 
-<div th:insert="/utils/state/detailsModal :: detailsModal"></div>
+<div th:insert="~{/utils/state/detailsModal :: detailsModal}"></div>
 <!-- javascripts -->
 <script src="js/jquery.js"></script>
 <script src="js/bootstrap.min.js"></script>

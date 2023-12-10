@@ -28,6 +28,10 @@ $('document').ready(function () {
         event.preventDefault();
         var href = $(this).attr('href');
         $.get(href, function (state, status) {
+            $('#StateCountryDetails').val(state.countryid);
+            $('#continentDetails').val(state.country.continent);
+            $('#capitalDetails').val(state.country.capital);
+            $('#nationalityDetails').val(state.country.nationality);
             $('#idDetails').val(state.id);
             $('#descriptionDetails').val(state.name);
             $('#detailsDetails').val(state.details);

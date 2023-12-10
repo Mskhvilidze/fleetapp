@@ -14,7 +14,7 @@ public class ClientService {
     ClientRepository repository;
 
     //Return list of state
-    public List<Client> getStates() {
+    public List<Client> getClients() {
         return repository.findAll();
     }
 
@@ -23,8 +23,10 @@ public class ClientService {
         repository.save(client);
     }
 
-    public int updateById(int id, String name, String details, String address, String email, String phone, String website) {
-        return repository.updateById(id, name, details, address, email, phone, website);
+    public int updateById(Integer id, Integer countryId, Integer stateId, String name, String details, String website,
+                          String address, String city, String phone, String mobile, String eMail) {
+        return repository.updateById(id, countryId, stateId, name, details, website, address, city, phone,
+                mobile, eMail);
     }
     //get by id
     public Optional<Client> findById(int id) {

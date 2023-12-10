@@ -49,7 +49,7 @@ public class StateController {
         if (state != null) {
             return ResponseEntity.ok(state);
         } else {
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Statei not found");
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("State not found");
         }
     }
 
@@ -73,9 +73,9 @@ public class StateController {
     public String delete(@PathVariable(name = "id") Integer id, RedirectAttributes redirectAttributes) {
         int deleteCountry = service.delete(id);
         if (deleteCountry == 1) {
-            redirectAttributes.addFlashAttribute("success", "Yup, Country has been deleted!");
+            redirectAttributes.addFlashAttribute("success", "Yup, State has been deleted!");
         } else {
-            redirectAttributes.addFlashAttribute("danger", "Nope, Country could not be deleted!");
+            redirectAttributes.addFlashAttribute("danger", "Nope, State could not be deleted!");
         }
         return REDIRECT_STATE;
     }

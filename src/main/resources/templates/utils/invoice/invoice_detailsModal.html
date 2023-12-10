@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head th:insert="~{head :: head}"></head>
+<body>
+<div class="modal fade" id="detailsModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true"
+     th:fragment="detailsModal">
+    <div class="modal-dialog" role="document">
+        <div class="modal-header">
+            <div class="modal-header">
+                <h5 class="modal-title" id="editModalLabel">Details Client</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form th:action="@{/invoice/details}" method="GET" data-nos>
+                    <table style="width: 100%">
+                        <tr>
+                            <td style="width: 50%">
+                                <div class="form-group">
+                                    <label for="InvoiceIdDetails" class="col-form-label">ID:</label>
+                                    <input type="text" class="form-control" id="InvoiceIdDetails" name="id" readonly>
+                                </div>
+                                <div class="form-group">
+                                    <label for="InvoiceClientDetails" class="col-form-label">Client:</label>
+                                    <select class="form-control" id="InvoiceClientDetails" name="client">
+                                        <option>-SELECT-</option>
+                                        <option th:each="client : ${clients}"
+                                                th:value="${client.id}"
+                                                th:text="${client.name}">
+                                        </option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label for="InvoiceInvoiceStatusDetails" class="col-form-label">InvoiceStatus:</label>
+                                    <select class="form-control" id="InvoiceInvoiceStatusDetails" name="invoiceStatus">
+                                        <option>-SELECT-</option>
+                                        <option th:each="invoicestatus : ${invoiceStatuses}"
+                                                th:value="${invoicestatus.id}"
+                                                th:text="${invoicestatus.description}">
+                                        </option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label for="InvoiceInvoiceDateDetails" class="col-form-label">Invoice Date:</label>
+                                    <input type="date" class="form-control" id="InvoiceInvoiceDateDetails" name="invoiceDate" readonly>
+                                </div>
+                                <div class="form-group">
+                                    <label for="InvoiceRemarksDetails" class="col-form-label">Remarks:</label>
+                                    <input type="text" class="form-control" id="InvoiceRemarksDetails" name="remarks" readonly>
+                                </div>
+                            </td>
+                        </tr>
+                    </table>
+                    <div class="form-group">
+                        <button type="submit" class="btn btn-primary">Submit</button>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>
