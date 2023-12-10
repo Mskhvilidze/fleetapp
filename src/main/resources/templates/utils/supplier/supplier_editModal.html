@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+
+<head th:insert="head :: head">
+</head>
+
+<body>
+<!-- container section end -->
+<div class="modal fade" id="editModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true"
+     th:fragment="editModal">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="">Update Supplier</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form th:action="@{/supplier/update}" method="PUT" data-nos>
+                    <table style="width: 100%">
+                        <tr>
+                            <td style="width: 50%">
+                                <div class="form-group">
+                                    <label for="SupplierIDEdit" class="col-form-label">ID:</label>
+                                    <input type="text" class="form-control" id="SupplierIDEdit" name="id" readonly>
+                                </div>
+                                <div class="form-group">
+                                    <label for="SupplierCountryEdit" class="col-form-label">Country:</label>
+                                    <select class="form-control" id="SupplierCountryEdit" name="countryid">
+                                        <option>-SELECT-</option>
+                                        <option th:each="country : ${countries}"
+                                                th:value="${country.id}"
+                                                th:text="${country.description}">
+                                        </option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label for="SupplierStateEdit" class="col-form-label">State:</label>
+                                    <select class="form-control" id="SupplierStateEdit" name="stateid">
+                                        <option>-SELECT-</option>
+                                        <option th:each="state : ${states}"
+                                                th:value="${state.id}"
+                                                th:text="${state.name}">
+                                        </option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label for="SupplierNameEdit" class="col-form-label">Name:</label>
+                                    <input type="text" class="form-control" id="SupplierNameEdit" name="name">
+                                </div>
+                                <div class="form-group">
+                                    <label for="SupplierDetailsEdit" class="col-form-label">Details:</label>
+                                    <input type="text" class="form-control" id="SupplierDetailsEdit" name="details">
+                                </div>
+                                <div class="form-group">
+                                    <label for="SupplierWebsiteEdit" class="col-form-label">Website:</label>
+                                    <input type="text" class="form-control" id="SupplierWebsiteEdit" name="website">
+                                </div>
+                            </td>
+                            <td style="width: 50%; padding-left: 10px">
+                                <div class="form-group">
+                                    <label for="SupplierAddressEdit" class="col-form-label">Address:</label>
+                                    <input type="text" class="form-control" id="SupplierAddressEdit" name="address">
+                                </div>
+                                <div class="form-group">
+                                    <label for="SupplierCityEdit" class="col-form-label">City:</label>
+                                    <input type="text" class="form-control" id="SupplierCityEdit" name="city">
+                                </div>
+                                <div class="form-group">
+                                    <label for="SupplierPhoneEdit" class="col-form-label">Phone:</label>
+                                    <input type="text" class="form-control" id="SupplierPhoneEdit" name="phone">
+                                </div>
+                                <div class="form-group">
+                                    <label for="SupplierMobileEdit" class="col-form-label">Mobile:</label>
+                                    <input type="text" class="form-control" id="SupplierMobileEdit" name="mobile">
+                                </div>
+                                <div class="form-group">
+                                    <label for="SupplierEmailEdit" class="col-form-label">E-Mail:</label>
+                                    <input type="text" class="form-control" id="SupplierEmailEdit" name="email">
+                                </div>
+                            </td>
+                        </tr>
+                    </table>
+                    <div class="form-group">
+                        <button type="submit" class="btn btn-primary">Submit</button>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- javascripts -->
+<script src="js/jquery.js"></script>
+<script src="js/bootstrap.min.js"></script>
+<!-- nice scroll -->
+<script src="js/jquery.scrollTo.min.js"></script>
+<script src="js/jquery.nicescroll.js" type="text/javascript"></script>
+<!--custome script for all page-->
+<script src="js/scripts.js"></script>
+<script src="js/supplier.js"></script>
+</body>
+
+</html>

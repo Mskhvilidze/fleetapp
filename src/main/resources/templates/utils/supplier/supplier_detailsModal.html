@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head th:insert="~{head :: head}"></head>
+<body>
+<div class="modal fade" id="detailsModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true"
+     th:fragment="detailsModal">
+    <div class="modal-dialog" role="document">
+        <div class="modal-header">
+            <div class="modal-header">
+                <h5 class="modal-title" id="editModalLabel">Details Supplier</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form th:action="@{/supplier/details}" method="GET" data-nos>
+                    <table style="width: 100%">
+                        <tr>
+                            <td style="width: 50%">
+                                <div class="form-group">
+                                    <label for="SupplierIDDetails" class="col-form-label">ID:</label>
+                                    <input type="text" class="form-control" id="SupplierIDDetails" name="id" readonly>
+                                </div>
+                                <div class="form-group">
+                                    <label for="SupplierCountryDetails" class="col-form-label">Country:</label>
+                                    <select class="form-control" id="SupplierCountryDetails" name="countryid">
+                                        <option>-SELECT-</option>
+                                        <option th:each="country : ${countries}"
+                                                th:value="${country.id}"
+                                                th:text="${country.description}">
+                                        </option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label for="SupplierStateDetails" class="col-form-label">State:</label>
+                                    <select class="form-control" id="SupplierStateDetails" name="stateid">
+                                        <option>-SELECT-</option>
+                                        <option th:each="state : ${states}"
+                                                th:value="${state.id}"
+                                                th:text="${state.name}">
+                                        </option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label for="SupplierNameDetails" class="col-form-label">Name:</label>
+                                    <input type="text" class="form-control" id="SupplierNameDetails" name="name">
+                                </div>
+                                <div class="form-group">
+                                    <label for="SupplierDetailsDetails" class="col-form-label">Details:</label>
+                                    <input type="text" class="form-control" id="SupplierDetailsDetails" name="details">
+                                </div>
+                                <div class="form-group">
+                                    <label for="SupplierWebsiteDetails" class="col-form-label">Website:</label>
+                                    <input type="text" class="form-control" id="SupplierWebsiteDetails" name="website">
+                                </div>
+                            </td>
+                            <td style="width: 50%; padding-left: 10px">
+                                <div class="form-group">
+                                    <label for="SupplierAddressDetails" class="col-form-label">Address:</label>
+                                    <input type="text" class="form-control" id="SupplierAddressDetails" name="address">
+                                </div>
+                                <div class="form-group">
+                                    <label for="SupplierCityDetails" class="col-form-label">City:</label>
+                                    <input type="text" class="form-control" id="SupplierCityDetails" name="city">
+                                </div>
+                                <div class="form-group">
+                                    <label for="SupplierPhoneDetails" class="col-form-label">Phone:</label>
+                                    <input type="text" class="form-control" id="SupplierPhoneDetails" name="phone">
+                                </div>
+                                <div class="form-group">
+                                    <label for="SupplierMobileDetails" class="col-form-label">Mobile:</label>
+                                    <input type="text" class="form-control" id="SupplierMobileDetails" name="mobile">
+                                </div>
+                                <div class="form-group">
+                                    <label for="SupplierEmailDetails" class="col-form-label">E-Mail:</label>
+                                    <input type="text" class="form-control" id="SupplierEmailDetails" name="email">
+                                </div>
+                            </td>
+                        </tr>
+                    </table>
+                    <div class="form-group">
+                        <button type="submit" class="btn btn-primary">Submit</button>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

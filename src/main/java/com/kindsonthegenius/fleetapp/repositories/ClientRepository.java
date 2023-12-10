@@ -11,7 +11,6 @@ import org.springframework.transaction.annotation.Transactional;
 
 @Repository
 public interface ClientRepository extends JpaRepository<Client, Integer> {
-
     @Transactional
     @Modifying
     @Query(nativeQuery = true, value = "delete from client where id = ?")

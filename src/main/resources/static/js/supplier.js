@@ -1,27 +1,20 @@
 $('document').ready(function () {
-    $('#invoiceAdd').on('click', function (event) {
+    $('#add').on('click', function (event) {
         event.preventDefault();
+        // var form_data = cleanFormData($("form :input").serializeArray());
         var form = $('#addModal form')[0]; // Zugriff auf das Formular
         var formData = new FormData(form);
-        // Schleife durch die Einträge des FormData-Objekts
-        /*formData.forEach(function(value, key) {
-            alert(key + ": " + value);
-        });*/
-        let isValid = validateForm();
-        if (isValid === false) {
-            return;
-        }
+
         $.ajax({
             type: 'POST',
-            url: 'http://localhost:8086/fricke/invoice/addNew',
+            url: 'http://localhost:8086/fricke/supplier/addNew',
             data: formData,
             processData: false, // Damit die Daten nicht in einen Query-String umgewandelt werden
             contentType: false, // Damit der richtige Content-Type für Datei-Upload verwendet wird
             success: function (data, textStatus, jqXHR) {
                 if (jqXHR.status === 201) {
-                    window.location.href = 'http://localhost:8086/fricke/invoice';
-                    $('#succ').text(jqXHR.responseText);
-                    $('#flash').attr('class', 'alert alert-success');
+                    window.location.href = 'http://localhost:8086/fricke/supplier';
+                    alert(jqXHR.responseText)
                 }
             },
             error: function (jqXHR, textStatus, errorThrown) {
@@ -29,8 +22,7 @@ $('document').ready(function () {
                     $('#Tdanger').text(jqXHR.responseText);
                     $('.flash').attr('class', 'alert alert-danger');
                 } else {
-                    alert(jqXHR.responseText);
-                    $('#Tdanger').text("Ein Fehler ist aufgetreten: Prüfen Sie bitte, ob die Felder korrekt gefüllt sind!");
+                    $('#Tdanger').text("Ein Fehler ist aufgetreten:");
                     $('.flash').attr('class', 'alert alert-danger');
                 }
             }
@@ -40,14 +32,18 @@ $('document').ready(function () {
     $('table #editButton').on('click', function (event) {
         event.preventDefault();
         var href = $(this).attr('href');
-        $.get(href, function (invoice, status) {
-            $('#InvoiceIdEdit').val(invoice.id);
-            $('#InvoiceClientEdit').val(invoice.client.id);
-            $('#InvoiceInvoiceStatusEdit').val(invoice.invoiceStatus.id);
-
-            var invoiceDate = invoice.invoiceDate.substring(0, 10);
-            $('#InvoiceInvoiceDateEdit').val(invoiceDate);
-            $('#InvoiceRemarksEdit').val(invoice.remarks);
+        $.get(href, function (supplier, status) {
+            $('#SupplierIDEdit').val(supplier.id);
+            $('#SupplierCountryEdit').val(supplier.country.id);
+            $('#SupplierStateEdit').val(supplier.stateid);
+            $('#SupplierNameEdit').val(supplier.name);
+            $('#SupplierDetailsEdit').val(supplier.details);
+            $('#SupplierWebsiteEdit').val(supplier.website);
+            $('#SupplierAddressEdit').val(supplier.address);
+            $('#SupplierCityEdit').val(supplier.city);
+            $('#SupplierPhoneEdit').val(supplier.phone);
+            $('#SupplierMobileEdit').val(supplier.mobile);
+            $('#SupplierEmailEdit').val(supplier.email);
         })
             .done(function () {
                 // Erfolgreicher Abschluss
@@ -65,18 +61,21 @@ $('document').ready(function () {
                 }
             });
     });
-
     $('table #detailsButton').on('click', function (event) {
         event.preventDefault();
         var href = $(this).attr('href');
-        $.get(href, function (invoice, status) {
-            $('#InvoiceIdDetails').val(invoice.id);
-            $('#InvoiceClientDetails').val(invoice.client.id);
-            $('#InvoiceInvoiceStatusDetails').val(invoice.invoiceStatus.id);
-
-            var invoiceDate = invoice.invoiceDate.substring(0, 10);
-            $('#InvoiceInvoiceDateDetails').val(invoiceDate);
-            $('#InvoiceRemarksDetails').val(invoice.remarks);
+        $.get(href, function (supplier, status) {
+            $('#SupplierIDDetails').val(supplier.id);
+            $('#SupplierCountryDetails').val(supplier.country.id);
+            $('#SupplierStateDetails').val(supplier.stateid);
+            $('#SupplierNameDetails').val(supplier.name);
+            $('#SupplierDetailsDetails').val(supplier.details);
+            $('#SupplierWebsiteDetails').val(supplier.website);
+            $('#SupplierAddressDetails').val(supplier.address);
+            $('#SupplierCityDetails').val(supplier.city);
+            $('#SupplierPhoneDetails').val(supplier.phone);
+            $('#SupplierMobileDetails').val(supplier.mobile);
+            $('#SupplierEmailDetails').val(supplier.email);
         })
             .done(function () {
                 // Erfolgreicher Abschluss
@@ -104,18 +103,4 @@ $('document').ready(function () {
             keyboard: false
         });
     });
-
-    function validateForm() {
-        var clientSelect = document.getElementById('InvoiceClientAdd');
-        var invoiceStatusSelect = document.getElementById('InvoiceInvoiceStatusAdd');
-
-        var clientSelectedValue = clientSelect.options[clientSelect.selectedIndex].value;
-        var invoiceStatusSelectedValue = invoiceStatusSelect.options[invoiceStatusSelect.selectedIndex].value;
-
-        if (clientSelectedValue === '-SELECT-' || invoiceStatusSelectedValue === '-SELECT-') {
-            alert('Bitte wählen Sie einen Client oder InvoiceStatus aus.');
-            return false;
-        }
-        return true;
-    }
 });
